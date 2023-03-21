@@ -8,12 +8,12 @@ class ShipFactoryTest {
 
     @Test
     public void orderShipTest() {
-        Ship whiteship = ShipFactory.orderShip("Whiteship", "keesun@mail.com");
-        assertNotNull(whiteship);
-        assertEquals("Whiteship", whiteship.getName());
+        Ship whiteShip = new WhiteShipFactory().orderShip("WhiteShip", "keesun@mail.com");
+        assertNotNull(whiteShip);
+        assertEquals("WhiteShip", whiteShip.getName());
 
-        Ship blackship = ShipFactory.orderShip("Blackship", "keesun@mail.com");
-        assertNotNull(blackship);
-        assertEquals("Blackship", blackship.getName());
+        Ship blackShip = new BlackShipFactory().orderShip("BlackShip", "keesun@mail.com");
+        assertNotNull(blackShip);
+        assertEquals("BlackShip", blackShip.getName());
     }
 }
