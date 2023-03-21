@@ -1,6 +1,6 @@
 package factorymethod;
 
-public class Ship {
+public abstract class Ship {
 
     private String name;
 
