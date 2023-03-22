@@ -1,0 +1,12 @@
+me\kktrkkt\designpattern\factorymethod\ShipFactory.class
+me\kktrkkt\designpattern\factorymethod\WhiteShipFactory.class
+me\kktrkkt\designpattern\singleton\EagerThreadSafeSingleton.class
+me\kktrkkt\designpattern\factorymethod\BlackShipFactory.class
+me\kktrkkt\designpattern\factorymethod\WhiteShip.class
+me\kktrkkt\designpattern\factorymethod\Ship.class
+me\kktrkkt\designpattern\factorymethod\BlackShip.class
+me\kktrkkt\designpattern\singleton\SimpleSingleton.class
+me\kktrkkt\designpattern\singleton\EnumSingleton.class
+me\kktrkkt\designpattern\singleton\StaticInnerThreadSafeSingleton$Holder.class
+me\kktrkkt\designpattern\singleton\LazyThreadSafeSingleton.class
+me\kktrkkt\designpattern\singleton\StaticInnerThreadSafeSingleton.class
