@@ -1,4 +1,4 @@
-package factorymethod;
+package me.kktrkkt.designpattern.factorymethod;
 
 public interface ShipFactory {
     default Ship orderShip(String name, String email) {

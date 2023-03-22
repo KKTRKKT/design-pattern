@@ -1,4 +1,4 @@
-package factorymethod;
+package me.kktrkkt.designpattern.factorymethod;
 
 public class WhiteShip extends Ship{
 
