@@ -2,16 +2,6 @@ package me.kktrkkt.designpattern.abstractfactory;
 
 public abstract class DefaultShipFactory implements ShipFactory {
 
-    @Override
-    public Ship orderShip(String name, String email) {
-        validate(name, email);
-        prepareFor(name);
-        Ship ship = createShip();
-        sendEmailTo(email, ship);
-
-        return ship;
-    }
-
     private static void validate(String name, String email) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("배 이름을 지어주세요.");
