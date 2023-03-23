@@ -1,25 +1,44 @@
 package me.kktrkkt.designpattern.abstractfactory;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShipPartsFactoryTest {
 
-    @Test
-    public void white_ship_parts_factory_test() {
-        ShipFactory whiteShipFactory = new WhiteShipFactory(new WhiteShipPartsFactory());
+    @ParameterizedTest
+    @MethodSource("provideShipPartsFactory")
+    public void ship_parts_factory_test(ShipPartsFactory shipPartsFactory) {
+        WhiteShipFactory whiteShipFactory = new WhiteShipFactory(shipPartsFactory);
         Ship ship = whiteShipFactory.createShip();
-        assertEquals(WhiteWheel.class, ship.getWheel().getClass());
-        assertEquals(WhiteAnchor.class, ship.getAnchor().getClass());
+
+        if (shipPartsFactory instanceof WhiteShipPartsFactory) {
+            assertAll(
+                    () -> assertEquals(WhiteWheel.class, ship.getWheel().getClass()),
+                    () -> assertEquals(WhiteAnchor.class, ship.getAnchor().getClass())
+            );
+        } else if (shipPartsFactory instanceof BlackShipPartsFactory) {
+            assertAll(
+                    () -> assertEquals(BlackWheel.class, ship.getWheel().getClass()),
+                    () -> assertEquals(BlackAnchor.class, ship.getAnchor().getClass())
+            );
+        } else {
+            throw new IllegalStateException("Unexpected value: " + shipPartsFactory.getClass().getName());
+        }
+
     }
 
-    @Test
-    public void black_ship_parts_factory_test() {
-        ShipFactory whiteShipFactory = new WhiteShipFactory(new BlackShipPartsFactory());
-        Ship ship = whiteShipFactory.createShip();
-        assertEquals(BlackWheel.class, ship.getWheel().getClass());
-        assertEquals(BlackAnchor.class, ship.getAnchor().getClass());
+    static Stream<Arguments> provideShipPartsFactory(){
+        return Stream.of(
+                Arguments.of(new WhiteShipPartsFactory()),
+                Arguments.of(new BlackShipPartsFactory()),
+                Arguments.of(new BlackShipPartsFactory()),
+                Arguments.of(new BlackShipPartsFactory()),
+                Arguments.of(new WhiteShipPartsFactory())
+        );
     }
-
 }
