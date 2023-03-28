@@ -1,6 +1,6 @@
 package me.kktrkkt.designpattern.bridge;
 
-public interface Champion {
+public interface Champion{
 
     void move();
 
@@ -12,4 +12,5 @@ public interface Champion {
 
     void skillR();
 
+    void setSkin(Skin skin);
 }
