@@ -3,15 +3,20 @@ package me.kktrkkt.designpattern.composite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bag {
+public class Bag implements PriceComposite {
 
-    private List<Item> items = new ArrayList<>();
+    private final List<PriceComposite> items = new ArrayList<>();
 
-    public void add(Item item) {
+    public void add(PriceComposite item) {
         items.add(item);
     }
 
-    public List<Item> getItems() {
+    public List<PriceComposite> getItems() {
         return items;
+    }
+
+    @Override
+    public int getPrice() {
+        return items.stream().mapToInt(PriceComposite::getPrice).sum();
     }
 }

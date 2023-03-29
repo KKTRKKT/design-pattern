@@ -12,7 +12,7 @@ public class Client {
         bag.add(doranBlade);
         bag.add(healPotion);
 
-        return bag.getItems().stream().mapToInt(Item::getPrice).sum();
+        return bag.getPrice();
     }
 
     public int getBloodBladeAndHealPotionPrice(){
@@ -23,6 +23,6 @@ public class Client {
         bag.add(bloodBlade);
         bag.add(healPotion);
 
-        return bag.getItems().stream().mapToInt(Item::getPrice).sum();
+        return bag.getPrice();
     }
 }

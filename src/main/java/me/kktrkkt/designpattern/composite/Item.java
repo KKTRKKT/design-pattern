@@ -1,6 +1,6 @@
 package me.kktrkkt.designpattern.composite;
 
-public class Item {
+public class Item implements PriceComposite {
 
     private String name;
 
