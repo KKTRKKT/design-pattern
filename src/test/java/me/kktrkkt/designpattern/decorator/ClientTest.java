@@ -45,7 +45,7 @@ public class ClientTest {
                 Arguments.of(true, true),
                 Arguments.of(true, false),
                 Arguments.of(false, true),
-                Arguments.of(true, true)
+                Arguments.of(false, false)
         );
     }
 
