@@ -1,42 +1,49 @@
 package me.kktrkkt.designpattern.decorator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClientTest {
 
-    @Test
-    public void comment_test() {
-        List<String> commentList = getCommentList(new CommentService());
+    @ParameterizedTest
+    @MethodSource("isSpamFilteringWithIsTrimming")
+    public void comment_test(boolean isEnabledSpamFiltering, boolean isEnabledTrimming) {
+        CommentService commentService = new DefaultCommentService();
 
-        assertAll(
-                () -> assertTrue(commentList.contains("오징어게임")),
-                () -> assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지...")),
-                () -> assertTrue(commentList.contains("http://kktrkkt.github.io"))
-        );
+        if(isEnabledSpamFiltering){
+            commentService = new SpamFilteringCommentService(commentService);
+        }
+        if(isEnabledTrimming){
+            commentService = new TrimmingCommentService(commentService);
+        }
+
+        List<String> commentList = getCommentList(commentService);
+
+        assertTrue(commentList.contains("오징어게임"));
+        if(isEnabledTrimming){
+            assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지"));
+        }else{
+            assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지..."));
+        }
+
+        if(!isEnabledSpamFiltering){
+            assertTrue(commentList.contains("http://kktrkkt.github.io"));
+        }
+
     }
 
-    @Test
-    public void spam_filtering_test() {
-        List<String> commentList = getCommentList(new SpamFilteringCommentService());
-
-        assertAll(
-                () -> assertTrue(commentList.contains("오징어게임")),
-                () -> assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지..."))
-        );
-    }
-
-    @Test
-    public void trimming_test() {
-        List<String> commentList = getCommentList(new TrimmingCommentService());
-
-        assertAll(
-                () -> assertTrue(commentList.contains("오징어게임")),
-                () -> assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지")),
-                () -> assertTrue(commentList.contains("http://kktrkkt.github.io"))
+    private static Stream<Arguments> isSpamFilteringWithIsTrimming() {
+        return Stream.of(
+                Arguments.of(true, true),
+                Arguments.of(true, false),
+                Arguments.of(false, true),
+                Arguments.of(true, true)
         );
     }
 
@@ -46,7 +53,6 @@ public class ClientTest {
         client.writeComment("보는게 하는거 보다 재밌을 수가 없지...");
         client.writeComment("http://kktrkkt.github.io");
 
-        List<String> commentList = client.readCommentList();
-        return commentList;
+        return client.readCommentList();
     }
 }

@@ -1,14 +1,21 @@
 package me.kktrkkt.designpattern.decorator;
 
-public class SpamFilteringCommentService extends CommentService {
+import java.util.List;
+
+public class SpamFilteringCommentService extends CommentServiceDecorator {
+
+    public SpamFilteringCommentService(CommentService commentService) {
+        super(commentService);
+    }
 
     @Override
     public void addComment(String comment) {
         boolean isSpam = isSpam(comment);
         if (!isSpam) {
-            super.addComment(comment);
+            this.commentService.addComment(comment);
         }
     }
+
 
     private boolean isSpam(String comment) {
         return comment.contains("http");
