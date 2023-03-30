@@ -25,6 +25,8 @@ public class ClientTest {
 
         List<String> commentList = getCommentList(commentService);
 
+        commentList.stream().forEach(System.out::println);
+
         assertTrue(commentList.contains("오징어게임"));
         if(isEnabledTrimming){
             assertTrue(commentList.contains("보는게 하는거 보다 재밌을 수가 없지"));
