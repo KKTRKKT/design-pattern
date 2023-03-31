@@ -1,8 +1,8 @@
 package me.kktrkkt.designpattern.decorator;
 
-public class TrimmingCommentService extends CommentServiceDecorator {
+public class TrimmingCommentServiceDecorator extends CommentServiceDecorator {
 
-    public TrimmingCommentService(CommentService commentService) {
+    public TrimmingCommentServiceDecorator(CommentService commentService) {
         super(commentService);
     }
 

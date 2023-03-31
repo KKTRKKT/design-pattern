@@ -17,10 +17,10 @@ public class ClientTest {
         CommentService commentService = new DefaultCommentService();
 
         if(isEnabledSpamFiltering){
-            commentService = new SpamFilteringCommentService(commentService);
+            commentService = new SpamFilteringCommentServiceDecorator(commentService);
         }
         if(isEnabledTrimming){
-            commentService = new TrimmingCommentService(commentService);
+            commentService = new TrimmingCommentServiceDecorator(commentService);
         }
 
         List<String> commentList = getCommentList(commentService);

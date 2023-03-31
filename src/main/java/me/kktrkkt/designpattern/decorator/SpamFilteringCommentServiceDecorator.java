@@ -1,10 +1,8 @@
 package me.kktrkkt.designpattern.decorator;
 
-import java.util.List;
+public class SpamFilteringCommentServiceDecorator extends CommentServiceDecorator {
 
-public class SpamFilteringCommentService extends CommentServiceDecorator {
-
-    public SpamFilteringCommentService(CommentService commentService) {
+    public SpamFilteringCommentServiceDecorator(CommentService commentService) {
         super(commentService);
     }
 
