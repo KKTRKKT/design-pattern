@@ -2,7 +2,7 @@ package me.kktrkkt.designpattern.decorator;
 
 import java.util.List;
 
-public class CommentServiceDecorator implements CommentService{
+public abstract class CommentServiceDecorator implements CommentService{
 
     protected final CommentService commentService;
 
