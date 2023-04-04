@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailFacade {
+
     public static void send(String to, String from, String subject, String text, String host) {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
