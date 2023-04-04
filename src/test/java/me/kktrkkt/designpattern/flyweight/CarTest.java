@@ -10,12 +10,13 @@ class CarTest {
 
     @Test
     public void car_test(){
+        CarFactory carFactory = new CarFactory();
         List<Car> cars = List.of(
-                new Car("Tesla", "Model S", "white"),
-                new Car("Tesla", "Model S", "white"),
-                new Car("Tesla", "Model 3", "red"),
-                new Car("Tesla", "Model 3", "red"),
-                new Car("Tesla", "Model S", "white")
+                carFactory.createCar("Tesla", "Model S", "white"),
+                carFactory.createCar("Tesla", "Model S", "white"),
+                carFactory.createCar("Tesla", "Model 3", "red"),
+                carFactory.createCar("Tesla", "Model 3", "red"),
+                carFactory.createCar("Tesla", "Model S", "white")
         );
 
         assertEquals(cars.get(0).hashCode(), cars.get(1).hashCode());
