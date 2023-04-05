@@ -11,12 +11,7 @@ public abstract class CommentServiceDecorator implements CommentService{
     }
 
     @Override
-    public void addComment(String comment) {
-        commentService.addComment(comment);
-    }
-
-    @Override
-    public List<String> getCommentList() {
+    public final List<String> getCommentList() {
         return commentService.getCommentList();
     }
 }
