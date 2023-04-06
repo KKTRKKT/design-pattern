@@ -1,8 +1,16 @@
 package me.kktrkkt.designpattern.chain_of_responsibility;
 
-public class RequestHandler {
+public abstract class RequestHandler {
+
+    private final RequestHandler nextHandler;
+
+    protected RequestHandler (RequestHandler nextHandler) {
+        this.nextHandler = nextHandler;
+    }
 
     public void handler(Request request) {
-        System.out.println(request.getBody());
+        if(nextHandler != null){
+            nextHandler.handler(request);
+        }
     }
 }

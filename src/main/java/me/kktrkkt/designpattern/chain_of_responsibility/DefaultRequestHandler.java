@@ -1,14 +1,13 @@
 package me.kktrkkt.designpattern.chain_of_responsibility;
 
-public class LoggingRequestHandler extends RequestHandler {
+public class DefaultRequestHandler extends RequestHandler {
 
-    public LoggingRequestHandler(RequestHandler requestHandler) {
+    public DefaultRequestHandler(RequestHandler requestHandler) {
         super(requestHandler);
     }
 
-    @Override
     public void handler(Request request) {
-        System.out.println("로깅");
+        System.out.println(request.getBody());
         super.handler(request);
     }
 }
