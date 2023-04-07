@@ -2,18 +2,18 @@ package me.kktrkkt.designpattern.command;
 
 public class Button {
 
-    private Light light;
+    private final Command command;
 
-    public Button(Light light) {
-        this.light = light;
+    public Button(Command command) {
+        this.command = command;
     }
 
     public void press() {
-        light.off();
+        command.execute();
     }
 
     public static void main(String[] args) {
-        Button button = new Button(new Light());
+        Button button = new Button(new LightOnCommand(new Light()));
         button.press();
         button.press();
         button.press();

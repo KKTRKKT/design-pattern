@@ -2,18 +2,18 @@ package me.kktrkkt.designpattern.command;
 
 public class MyApp {
 
-    private Game game;
+    private final Command command;
 
-    public MyApp(Game game) {
-        this.game = game;
+    public MyApp(Command command) {
+        this.command = command;
     }
 
     public void press() {
-        game.start();
+        command.execute();
     }
 
     public static void main(String[] args) {
-        MyApp myApp = new MyApp(new Game());
+        MyApp myApp = new MyApp(new GameStartCommand(new Game()));
         myApp.press();
         myApp.press();
         myApp.press();
