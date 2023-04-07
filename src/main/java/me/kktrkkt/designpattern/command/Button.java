@@ -1,22 +1,32 @@
 package me.kktrkkt.designpattern.command;
 
+import java.util.Stack;
+
 public class Button {
 
-    private final Command command;
+    private final Stack<Command> commandStack;
 
-    public Button(Command command) {
-        this.command = command;
+    public Button() {
+        this.commandStack = new Stack<>();
     }
 
-    public void press() {
+    public void press(Command command) {
         command.execute();
+        this.commandStack.push(command);
+    }
+
+    public void undo() {
+        if(this.commandStack.empty()){
+            return;
+        }
+        this.commandStack.pop().undo();
     }
 
     public static void main(String[] args) {
-        Button button = new Button(new LightOnCommand(new Light()));
-        button.press();
-        button.press();
-        button.press();
-        button.press();
+        Button button = new Button();
+        button.press(new LightOnCommand(new Light()));
+        button.press(new LightOnCommand(new Light()));
+        button.undo();
+        button.undo();
     }
 }
