@@ -32,6 +32,7 @@ class SimpleSingletonTest {
         singletons.forEach(System.out::println);
 
         assertEquals(singletons.get(0), singletons.get(1));
+        assertEquals(singletons.get(1), singletons.get(2));
         assertEquals(singletons.get(2), singletons.get(3));
     }
 
