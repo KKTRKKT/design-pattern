@@ -1,6 +1,6 @@
 package me.kktrkkt.designpattern.singleton;
 
-// 스레드에 안저하며, Lazy Loading을 구현하는 다른 방법
+// 스레드에 안전하며, Lazy Loading을 구현하는 다른 방법
 public class StaticInnerThreadSafeSingleton {
     // private을 이용해 인스턴스 생성을 막는다.
     private StaticInnerThreadSafeSingleton() {}
