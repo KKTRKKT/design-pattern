@@ -1,6 +1,6 @@
 package me.kktrkkt.designpattern.factorymethod;
 
-public abstract class Ship {
+public class Ship {
 
     private String name;
 
