@@ -4,27 +4,24 @@ import java.util.Stack;
 
 public class PostFixParser {
 
-    public static PostFixExpression parse(String s) {
+    public static PostFixExpression parse(String text) {
         Stack<PostFixExpression> stack = new Stack<>();
-        for(Character c : s.toCharArray()){
-            new 
-        }
 
-        for (char c : expression.toCharArray()) {
+        for (char c : text.toCharArray()) {
             switch (c) {
                 case '+':
-                    numbers.push(numbers.pop() + numbers.pop());
+                    stack.push(new PlusExpression(stack.pop(), stack.pop()));
                     break;
                 case '-':
-                    int right = numbers.pop();
-                    int left = numbers.pop();
-                    numbers.push(left - right);
+                    PostFixExpression right = stack.pop();
+                    PostFixExpression left = stack.pop();
+                    stack.push(new MinusExpression(left, right));
                     break;
                 default:
-                    numbers.push(Integer.parseInt(c + ""));
+                    stack.push(new VariableExpression(c));
             }
         }
 
-        return ;
+        return stack.pop();
     }
 }

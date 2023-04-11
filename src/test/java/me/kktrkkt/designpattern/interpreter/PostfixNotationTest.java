@@ -12,12 +12,10 @@ class PostfixNotationTest {
     public void calculate_test() {
         PostFixExpression expression = PostFixParser.parse("xyz+-");
         int result = expression.interpret(Map.of(
-                "x", 1,
-                "y", 2,
-                "z", 3
+                'x', 1,
+                'y', 2,
+                'z', 3
         ));
-
-
 
         assertEquals(-4, result);
     }
