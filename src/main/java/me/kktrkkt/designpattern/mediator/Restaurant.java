@@ -1,18 +1,11 @@
 package me.kktrkkt.designpattern.mediator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Restaurant {
 
-    private final CleaningService cleaningService;
-
-    public Restaurant(CleaningService cleaningService) {
-        this.cleaningService = cleaningService;
-    }
-
-    public void dinner(Guest guest) {
-        System.out.println("dinner " + guest);
-    }
-
-    public void clean() {
-        cleaningService.clean(this);
+    public void dinner(int roomNumber, LocalDateTime time) {
+        System.out.println("dinner " + roomNumber + " at " + time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm")));
     }
 }

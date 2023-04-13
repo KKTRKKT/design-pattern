@@ -1,23 +1,26 @@
 package me.kktrkkt.designpattern.mediator;
 
+import java.time.LocalDateTime;
+
 public class Guest {
 
-    private final Restaurant restaurant;
+    private int roomNumber;
 
-    private final CleaningService cleaningService;
+    private final FrontDesk frontDesk;
 
-
-    public Guest(Restaurant restaurant, CleaningService cleaningService) {
-        this.restaurant = restaurant;
-        this.cleaningService = cleaningService;
+    public Guest(FrontDesk frontDesk) {
+        this.frontDesk = frontDesk;
     }
 
-    public void dinner() {
-        restaurant.dinner(this);
+    public void dinner(LocalDateTime time) {
+        frontDesk.dinner(this.roomNumber, time);
     }
 
     public void getTower(int numberOfTower) {
-        cleaningService.getTower(this, numberOfTower);
+        frontDesk.getTower(this.roomNumber, numberOfTower);
     }
 
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 }

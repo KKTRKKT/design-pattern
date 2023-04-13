@@ -5,8 +5,8 @@ public class CleaningService {
         System.out.println("clean " + gym);
     }
 
-    public void getTower(Guest guest, int numberOfTower) {
-        System.out.println(numberOfTower + " towers to " + guest);
+    public void getTower(int roomNumber, int numberOfTower) {
+        System.out.println(numberOfTower + " towers to " + roomNumber);
     }
 
     public void clean(Restaurant restaurant) {

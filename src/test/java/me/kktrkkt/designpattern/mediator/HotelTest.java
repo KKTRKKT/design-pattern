@@ -2,18 +2,21 @@ package me.kktrkkt.designpattern.mediator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 
 class HotelTest {
 
     @Test
     public void guest_test() {
-        Guest guest = new Guest(new Restaurant(), new CleaningService());
-        guest.getTower(3);
-        guest.dinner();
+        FrontDesk frontDesk = new FrontDesk(new CleaningService(), new Gym(), new Restaurant());
 
-        Restaurant restaurant = new Restaurant();
-        restaurant.clean();
+        Guest guest = new Guest(frontDesk);
+        guest.setRoomNumber(frontDesk.getRoomNumber());
+        guest.getTower(3);
+        guest.dinner(LocalDateTime.now());
+
+        frontDesk.cleanGym();
+        frontDesk.cleanRestaurant();
     }
 
 }
