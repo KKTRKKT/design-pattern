@@ -19,9 +19,10 @@ class BoardTest {
 
         // TODO 가장 최신 글 먼저 순회하기
         Iterator<Post> recentIterator = board.getRecentIterator();
-        while (recentIterator.hasNext()){
-            System.out.println(recentIterator.next().getTitle());
-        }
+//        while (recentIterator.hasNext()){
+//            System.out.println(recentIterator.next().getTitle());
+//        }
+        recentIterator.forEachRemaining(p-> System.out.println(p.getTitle()));
     }
 
 }
