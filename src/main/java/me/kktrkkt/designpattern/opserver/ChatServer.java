@@ -1,30 +1,33 @@
 package me.kktrkkt.designpattern.opserver;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ChatServer {
 
-    private Map<String, List<String>> messages;
+    private final Map<String, List<ChatServerSubscriber>> subscribers;
 
     public ChatServer() {
-        this.messages = new HashMap<>();
+        this.subscribers = new HashMap<>();
     }
 
-
-    public void add(String subject, String message) {
-        if (messages.containsKey(subject)) {
-            messages.get(subject).add(message);
+    public void register(String subject, ChatServerSubscriber...subscriber) {
+        List<ChatServerSubscriber> asList = Arrays.asList(subscriber);
+        if (this.subscribers.containsKey(subject)) {
+            this.subscribers.get(subject).addAll(asList);
         } else {
-            List<String> messageList = new ArrayList<>();
-            messageList.add(message);
-            messages.put(subject, messageList);
+            ArrayList<ChatServerSubscriber> newList = new ArrayList<>(asList);
+            this.subscribers.put(subject, newList);
         }
+
+        Arrays.stream(subscriber).forEach(s->s.handleMessage(subject + " " + "registered"));
     }
 
-    public List<String> getMessage(String subject) {
-        return messages.get(subject);
+    public void unRegister(String subject, ChatServerSubscriber...subscriber) {
+        this.subscribers.get(subject).removeAll(Arrays.asList(subscriber));
+        Arrays.stream(subscriber).forEach(s->s.handleMessage(subject + " " + "unregistered"));
+    }
+
+    public void sendMessage(String name, String subject, String message){
+        this.subscribers.get(subject).forEach(s->s.handleMessage("[" + subject + "] " + name + " : " + message));
     }
 }

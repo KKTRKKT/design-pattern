@@ -9,16 +9,19 @@ class ChatServerTest {
     @Test
     public void chatServer_test() {
         ChatServer chatServer = new ChatServer();
+        User kktrkkt = new User("kktrkkt");
+        User shlee = new User("shlee");
 
-        User user1 = new User(chatServer);
-        user1.sendMessage("디자인패턴", "이번엔 옵저버 패턴입니다.");
-        user1.sendMessage("롤드컵2021", "LCK 화이팅!");
+        chatServer.register("디자인패턴", kktrkkt);
+        chatServer.register("롤드컵2021", kktrkkt);
+        chatServer.register("디자인패턴", shlee);
 
-        User user2 = new User(chatServer);
-        System.out.println(user2.getMessage("디자인패턴"));
+        chatServer.sendMessage(kktrkkt.getName(), "디자인패턴", "이번엔 옵저버 패턴입니다.");
+        chatServer.sendMessage(kktrkkt.getName(), "롤드컵2021", "LCK 화이팅!");
 
-        user1.sendMessage("디자인패턴", "예제 코드 보는 중..");
-        System.out.println(user2.getMessage("디자인패턴"));
+        chatServer.unRegister("디자인패턴", kktrkkt);
+
+        chatServer.sendMessage(shlee.getName(), "디자인패턴", "예제 코드 보는 중..");
     }
 
 }

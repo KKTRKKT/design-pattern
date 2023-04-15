@@ -1,21 +1,19 @@
 package me.kktrkkt.designpattern.opserver;
 
-import java.util.List;
+public class User implements ChatServerSubscriber{
 
-public class User {
+    private String name;
 
-    private ChatServer chatServer;
-
-    public User(ChatServer chatServer) {
-        this.chatServer = chatServer;
+    public User(String name) {
+        this.name = name;
     }
 
-
-    public void sendMessage(String subject, String message) {
-        chatServer.add(subject, message);
+    public String getName() {
+        return name;
     }
 
-    public List<String> getMessage(String subject) {
-        return chatServer.getMessage(subject);
+    @Override
+    public void handleMessage(String message) {
+        System.out.println("(" + this.hashCode() +") " + message);
     }
 }
