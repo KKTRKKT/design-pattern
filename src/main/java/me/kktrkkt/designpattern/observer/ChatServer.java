@@ -1,4 +1,4 @@
-package me.kktrkkt.designpattern.opserver;
+package me.kktrkkt.designpattern.observer;
 
 import java.util.*;
 
