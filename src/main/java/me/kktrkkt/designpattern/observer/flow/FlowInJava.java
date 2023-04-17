@@ -6,13 +6,7 @@ import java.util.concurrent.SubmissionPublisher;
 public class FlowInJava {
 
     public static void main(String[] args) {
-        Flow.Publisher<String> publisher = new Flow.Publisher<String>() {
-            @Override
-            public void subscribe(Flow.Subscriber<? super String> subscriber) {
-                subscriber.onNext("hello flow");
-                subscriber.onComplete();
-            }
-        };
+        SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
 
         Flow.Subscriber<String> subscriber = new Flow.Subscriber<>(){
 
@@ -42,6 +36,7 @@ public class FlowInJava {
         };
 
         publisher.subscribe(subscriber);
+        publisher.submit("hello flow");
         System.out.println("처리완료");
     }
 }
