@@ -1,6 +1,5 @@
 package me.kktrkkt.designpattern.observer.property_change;
 
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
