@@ -1,16 +1,21 @@
 package me.kktrkkt.designpattern.state;
 
-public class Client {
+import org.junit.jupiter.api.Test;
 
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class OnlineCourseTest {
+
+    @Test
+    public void onlineCourse_test(){
         Student student = new Student("whiteship");
+        Student keesun = new Student("keesun");
         OnlineCourse onlineCourse = new OnlineCourse();
 
-        Student keesun = new Student("keesun");
         keesun.addPrivateCourse(onlineCourse);
 
         onlineCourse.addStudent(student);
-        onlineCourse.changeState(OnlineCourse.State.PRIVATE);
+        onlineCourse.changeState(new PrivateState(onlineCourse));
 
         onlineCourse.addStudent(keesun);
 
