@@ -1,18 +1,18 @@
 package me.kktrkkt.designpattern.visitor;
 
-public class Watch implements Device{
+public class Pad implements Device {
     @Override
     public void printTo(Rectangle rectangle) {
-        System.out.println("print Rectangle to watch");
+        System.out.println("print Rectangle to pad");
     }
 
     @Override
     public void printTo(Triangle triangle) {
-        System.out.println("print Triangle to watch");
+        System.out.println("print Triangle to pad");
     }
 
     @Override
     public void printTo(Circle circle) {
-        System.out.println("print Circle to watch");
+        System.out.println("print Circle to pad");
     }
 }
