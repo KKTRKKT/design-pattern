@@ -1,12 +1,10 @@
 package me.kktrkkt.designpattern.composite;
 
-import java.util.stream.Collectors;
-
 public class Client {
 
     public int getDoranBladeAndHealPotionPrice(){
-        Item doranBlade = new Item("도란검", 450);
-        Item healPotion = new Item("체력 물약", 50);
+        Item doranBlade = new DoranBlade();
+        Item healPotion = new HealPotion();
 
         Bag bag = new Bag();
         bag.add(doranBlade);
@@ -16,8 +14,8 @@ public class Client {
     }
 
     public int getBloodBladeAndHealPotionPrice(){
-        Item bloodBlade = new Item("흡혈검", 350);
-        Item healPotion = new Item("체력 물약", 50);
+        Item bloodBlade = new BloodBlade();
+        Item healPotion = new HealPotion();
 
         Bag bag = new Bag();
         bag.add(bloodBlade);

@@ -2,21 +2,29 @@ package me.kktrkkt.designpattern.composite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Bag implements PriceComposite {
+public class Bag implements Item {
 
-    private final List<PriceComposite> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
-    public void add(PriceComposite item) {
+    public void add(Item item) {
         items.add(item);
     }
 
-    public List<PriceComposite> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
     @Override
     public int getPrice() {
-        return items.stream().mapToInt(PriceComposite::getPrice).sum();
+        return items.stream().mapToInt(Item::getPrice).sum();
+    }
+
+    @Override
+    public String getName() {
+        return items.stream()
+                .map(item -> "["+item.getName()+"]")
+                .collect(Collectors.joining(", "));
     }
 }

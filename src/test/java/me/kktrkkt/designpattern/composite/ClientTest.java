@@ -5,19 +5,26 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientTest {
-
     @Test
     public void getDoranBladeAndHealPotionPriceTest() {
-        Client client = new Client();
-        int price = client.getDoranBladeAndHealPotionPrice();
-        assertEquals(price, 500);
+        Bag bag = new Bag();
+        bag.add(new DoranBlade());
+        bag.add(new HealPotion());
+        bag.add(new HealPotion());
+
+        int price = bag.getPrice();
+        System.out.println(bag.getName());
+        assertEquals(price, 550);
     }
 
     @Test
     public void getBloodBladeAndHealPotionPrice() {
-        Client client = new Client();
-        int price = client.getBloodBladeAndHealPotionPrice();
+        Bag bag = new Bag();
+        bag.add(new BloodBlade());
+        bag.add(new HealPotion());
+
+        int price = bag.getPrice();
+        System.out.println(bag.getName());
         assertEquals(price, 400);
     }
-
 }
