@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ClientTest {
+class BagTest {
     @Test
     public void getDoranBladeAndHealPotionPriceTest() {
         Bag bag = new Bag();
