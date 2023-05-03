@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ClientTest {
+public class CommentServiceTest {
 
     @ParameterizedTest
     @MethodSource("isSpamFilteringWithIsTrimming")
@@ -49,12 +49,11 @@ public class ClientTest {
         );
     }
 
-    private List<String> getCommentList(CommentService commentService) {
-        Client client = new Client(commentService);
-        client.writeComment("오징어게임");
-        client.writeComment("보는게 하는거 보다 재밌을 수가 없지...");
-        client.writeComment("http://kktrkkt.github.io");
+    private static List<String> getCommentList(CommentService commentService) {
+        commentService.addComment("오징어게임");
+        commentService.addComment("보는게 하는거 보다 재밌을 수가 없지...");
+        commentService.addComment("http://kktrkkt.github.io");
 
-        return client.readCommentList();
+        return commentService.getCommentList();
     }
 }
