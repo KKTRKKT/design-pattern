@@ -1,8 +1,13 @@
 package me.kktrkkt.designpattern.facade;
 
-public class Client {
+import org.junit.jupiter.api.Test;
 
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class EmailFacadeTest {
+
+    @Test
+    public void send_test() {
         String to = "kktrkkt@kktrkkt.me";
         String from = "kktrkkt@kktrkkt.me";
         String subject = "Test Mail from Java Program";
